@@ -4,6 +4,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 
+/**
+ * This is used to register permissions without using the plugin.yml file
+ * 
+ * @author Zeeraa
+ */
 public class PermissionRegistrator {
 	public static boolean registerPermission(String name) {
 		return registerPermission(new Permission(name));

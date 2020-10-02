@@ -17,7 +17,6 @@ import net.zeeraa.zcommandlib.command.base.ZCommandBase;
  * @author Zeeraa
  */
 public class HelpSubCommand extends ZSubCommand {
-
 	public HelpSubCommand() {
 		super("help");
 		setDescription("Show help");

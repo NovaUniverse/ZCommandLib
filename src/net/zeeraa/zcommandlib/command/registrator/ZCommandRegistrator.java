@@ -4,12 +4,17 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.Plugin;
+
 import net.zeeraa.zcommandlib.command.ZCommand;
 import net.zeeraa.zcommandlib.command.ZSubCommand;
 import net.zeeraa.zcommandlib.command.base.ZCommandBase;
 import net.zeeraa.zcommandlib.command.proxy.ZCommandProxy;
 import net.zeeraa.zcommandlib.command.utils.PermissionRegistrator;
-
+/**
+ * This class is used to register {@link ZCommand}s
+ * 
+ * @author Zeeraa
+ */
 public class ZCommandRegistrator {
 	/**
 	 * Register a {@link ZCommand}

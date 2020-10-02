@@ -18,7 +18,12 @@ import net.zeeraa.zcommandlib.command.ZCommand;
 import net.zeeraa.zcommandlib.command.ZSubCommand;
 import net.zeeraa.zcommandlib.command.help.HelpSubCommand;
 import net.zeeraa.zcommandlib.command.utils.AllowedSenders;
-
+/**
+ * This class is the shared code between {@link ZCommand} and
+ * {@link ZSubCommand}
+ * 
+ * @author Zeeraa
+ */
 public abstract class ZCommandBase {
 	private ZCommandBase parentCommand;
 	private List<ZSubCommand> subCommands;
@@ -79,8 +84,8 @@ public abstract class ZCommandBase {
 
 	/**
 	 * FSet the aliases for this command.
-	 * {@link ZCommandBase#generateAliasList(String...)} can be used to create
-	 * the list in one line
+	 * {@link ZCommandBase#generateAliasList(String...)} can be used to create the
+	 * list in one line
 	 * 
 	 * @param aliases {@link List} with aliases
 	 */
