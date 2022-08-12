@@ -52,11 +52,6 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
-
-		<repository>
-			<id>zeeraas-repo</id>
-			<url>https://nexus.zeeraa.net/repository/maven-group/</url>
-		</repository>
 	</repositories>
 
 	<dependencies>
@@ -64,13 +59,6 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.8.8-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
 			<version>1.8.8-R0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
@@ -84,12 +72,12 @@
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>zeeraas-snapshots</id>
-			<url>https://nexus.zeeraa.net/repository/maven-snapshots/</url>
+			<id>novauniverse2</id>
+			<url>https://nexus2.novauniverse.net/repository/novauniverse/</url>
 		</snapshotRepository>
 		<repository>
-			<id>zeeraas-releases</id>
-			<url>https://nexus.zeeraa.net/repository/maven-releases/</url>
+			<id>novauniverse2</id>
+			<url>https://nexus2.novauniverse.net/repository/novauniverse/</url>
 		</repository>
 	</distributionManagement>
 </project>
