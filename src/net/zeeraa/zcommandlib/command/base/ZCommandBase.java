@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.io.filefilter.TrueFileFilter;
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -223,7 +221,7 @@ public abstract class ZCommandBase {
 	}
 
 	/**
-	 * {@link TrueFileFilter} to not use any tab auto complete
+	 * true to not use any tab auto complete
 	 * <p>
 	 * This wont disable tab complete for sub commands
 	 * <p>
@@ -367,10 +365,6 @@ public abstract class ZCommandBase {
 		if (emptyTabMode) {
 			return new ArrayList<String>();
 		}
-
-		Validate.notNull(sender, "Sender cannot be null");
-		Validate.notNull(args, "Arguments cannot be null");
-		Validate.notNull(alias, "Alias cannot be null");
 
 		if (args.length == 0) {
 			return ImmutableList.of();
