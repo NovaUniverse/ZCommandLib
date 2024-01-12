@@ -18,7 +18,7 @@ JavaDoc avaliable at
 <dependency>
   <groupId>net.zeeraa</groupId>
   <artifactId>z-command-lib</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.1.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
