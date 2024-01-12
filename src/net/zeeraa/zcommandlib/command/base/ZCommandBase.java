@@ -522,7 +522,7 @@ public abstract class ZCommandBase {
 	/**
 	 * Set the {@link IMessageSender} used for sending no permission messages
 	 * 
-	 * @param disallowedSenderMessageSender The new {@link IMessageSender} to use
+	 * @param noPermissionMessageSender The new {@link IMessageSender} to use
 	 */
 	protected void setNoPermissionMessageSender(IMessageSender noPermissionMessageSender) {
 		this.noPermissionMessageSender = noPermissionMessageSender;
