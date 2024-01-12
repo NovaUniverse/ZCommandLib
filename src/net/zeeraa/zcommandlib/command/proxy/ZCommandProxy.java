@@ -91,13 +91,13 @@ public class ZCommandProxy extends Command {
 
 		if (!(sender instanceof ConsoleCommandSender)) {
 			if (!command.hasSenderPermission(sender)) {
-				sender.sendMessage(command.getNoPermissionMessage());
+				command.getNoPermissionMessageSender().sendMessage(command, sender, command.getNoPermissionMessage());
 				return false;
 			}
 		}
 
 		if (!command.getAllowedSenders().isAllowed(sender)) {
-			sender.sendMessage(command.getAllowedSenders().getErrorMessage());
+			command.getDisallowedSenderMessageSender().sendMessage(command, sender, command.getAllowedSenders().getErrorMessage());
 			return false;
 		}
 
@@ -124,35 +124,27 @@ public class ZCommandProxy extends Command {
 			if (command.isFilterAutocomplete()) {
 				// Filter
 				Collections.sort(commandResults, String.CASE_INSENSITIVE_ORDER);
-				for (String string : commandResults) {
-					if (StringUtil.startsWithIgnoreCase(string, lastWord)) {
-						result.add(string);
-					}
-				}
+				commandResults.stream().filter(c -> StringUtil.startsWithIgnoreCase(c, lastWord)).forEach(result::add);
 			} else {
 				// Do not filter
 				result.addAll(commandResults);
 			}
 
 			// Find aliases for sub commands
-			ArrayList<String> matchedSubCommands = new ArrayList<String>();
-			
-			for (ZSubCommand subCommand : command.getSubCommands()) {
+			List<String> matchedSubCommands = new ArrayList<String>();
+
+			command.getSubCommands().forEach(subCommand -> {
 				if (StringUtil.startsWithIgnoreCase(subCommand.getName(), lastWord)) {
 					matchedSubCommands.add(subCommand.getName());
 				}
 
-				for (String subCommandAlias : subCommand.getAliases()) {
-					if (StringUtil.startsWithIgnoreCase(subCommandAlias, lastWord)) {
-						matchedSubCommands.add(subCommandAlias);
-					}
-				}
-			}
+				subCommand.getAliases().stream().filter(sub -> StringUtil.startsWithIgnoreCase(sub, lastWord)).forEach(matchedSubCommands::add);
+			});
 
 			Collections.sort(matchedSubCommands, String.CASE_INSENSITIVE_ORDER);
 
 			result.addAll(0, matchedSubCommands);
-			
+
 			return result;
 		} else {
 			// Recursive check for sub commands

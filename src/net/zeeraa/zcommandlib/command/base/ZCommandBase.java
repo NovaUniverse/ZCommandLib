@@ -15,7 +15,10 @@ import com.google.common.collect.ImmutableList;
 import net.zeeraa.zcommandlib.command.ZCommand;
 import net.zeeraa.zcommandlib.command.ZSubCommand;
 import net.zeeraa.zcommandlib.command.help.HelpSubCommand;
+import net.zeeraa.zcommandlib.command.messages.IMessageSender;
+import net.zeeraa.zcommandlib.command.messages.implementation.DefaultChatMessageSender;
 import net.zeeraa.zcommandlib.command.utils.AllowedSenders;
+
 /**
  * This class is the shared code between {@link ZCommand} and
  * {@link ZSubCommand}
@@ -43,6 +46,11 @@ public abstract class ZCommandBase {
 
 	private boolean emptyTabMode;
 
+	private String noPermissionMessage;
+
+	private IMessageSender noPermissionMessageSender;
+	private IMessageSender disallowedSenderMessageSender;
+
 	public ZCommandBase(String name) {
 		this.name = name;
 		this.description = "";
@@ -60,6 +68,11 @@ public abstract class ZCommandBase {
 		this.emptyTabMode = false;
 
 		this.filterAutocomplete = false;
+
+		this.noPermissionMessage = ChatColor.RED + "You dont have permission to use this command";
+
+		this.noPermissionMessageSender = new DefaultChatMessageSender();
+		this.disallowedSenderMessageSender = new DefaultChatMessageSender();
 	}
 
 	/**
@@ -465,7 +478,54 @@ public abstract class ZCommandBase {
 	 *         permission
 	 */
 	public String getNoPermissionMessage() {
-		return ChatColor.RED + "You dont have permission to use this command";
+		return noPermissionMessage;
+	}
+
+	/**
+	 * Set the message that is shown to {@link CommandSender} that does not have
+	 * permission
+	 * 
+	 * @param noPermissionMessage a {@link String} that will be sent to
+	 *                            {@link CommandSender} without permission
+	 */
+	protected void setNoPermissionMessage(String noPermissionMessage) {
+		this.noPermissionMessage = noPermissionMessage;
+	}
+
+	/**
+	 * Get the {@link IMessageSender} used when showing disallowed sender messages
+	 * 
+	 * @return {@link IMessageSender} responsible for disallowed sender message
+	 */
+	public IMessageSender getDisallowedSenderMessageSender() {
+		return disallowedSenderMessageSender;
+	}
+
+	/**
+	 * Get the {@link IMessageSender} used when showing no permission messages
+	 * 
+	 * @return {@link IMessageSender} responsible for no permission message
+	 */
+	public IMessageSender getNoPermissionMessageSender() {
+		return noPermissionMessageSender;
+	}
+
+	/**
+	 * Set the {@link IMessageSender} used for sending disallowed sender messages
+	 * 
+	 * @param disallowedSenderMessageSender The new {@link IMessageSender} to use
+	 */
+	protected void setDisallowedSenderMessageSender(IMessageSender disallowedSenderMessageSender) {
+		this.disallowedSenderMessageSender = disallowedSenderMessageSender;
+	}
+
+	/**
+	 * Set the {@link IMessageSender} used for sending no permission messages
+	 * 
+	 * @param disallowedSenderMessageSender The new {@link IMessageSender} to use
+	 */
+	protected void setNoPermissionMessageSender(IMessageSender noPermissionMessageSender) {
+		this.noPermissionMessageSender = noPermissionMessageSender;
 	}
 
 	/**
